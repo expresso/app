@@ -20,7 +20,7 @@ export function app (transformer: ITransformerFunction) {
    * @param options - Expresso config options object, wich can be extended with additional properties
    * @param environment - Current sugar-env environment string
    */
-  return async <T extends IExpressoAppConfig> (options: T, environment: string) => {
+  return async <TOptions extends Partial<IExpressoAppConfig>> (options: TOptions, environment: string) => {
     if (environment !== env.TEST) {
       process.on('unhandledRejection', (err) => {
         console.error(err)

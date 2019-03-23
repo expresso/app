@@ -2,7 +2,7 @@
   "name": "@expresso/app",
   "version": "1.0.0",
   "description": "Basic @expresso express boilerplate",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
