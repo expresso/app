@@ -1,0 +1,49 @@
+{
+  "name": "@expresso/app",
+  "version": "1.0.0",
+  "description": "Basic @expresso express boilerplate",
+  "main": "dist/index.ts",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "deeptrace-express": "^1.2.4",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "lodash.merge": "^4.6.1",
+    "morgan": "^1.9.1",
+    "sugar-env": "^1.5.3"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
+    "@types/helmet": "0.0.43",
+    "@types/lodash": "^4.14.123",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^11.11.6",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-markdown": "^1.1.27",
+    "typescript": "^3.3.4000"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf",
+    "build:watch": "tsc -w",
+    "build:clean": "npm run clean && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "boilerplate",
+    "config",
+    "init",
+    "setup"
+  ],
+  "contributors": [
+    "Rogério Munhoz <rogerio.j.munhoz@gmail.com>"
+  ],
+  "license": "GPL-3.0",
+  "files": [
+    "dist"
+  ]
+}
