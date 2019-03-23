@@ -4,7 +4,7 @@ import { CorsOptions } from 'cors'
 import { IMorganConfig } from './middlewares/morgan'
 import { IDeepTraceOptions } from './middlewares/deep-trace'
 
-export interface IAppConfig {
+export interface IExpressoAppConfig {
   name: string,
   version: string,
   deeptrace: IDeepTraceOptions,
@@ -12,7 +12,7 @@ export interface IAppConfig {
   cors: CorsOptions
 }
 
-export function makeConfig (options: Partial<IAppConfig>, environment: string): IAppConfig {
+export function makeConfig (options: Partial<IExpressoAppConfig>, environment: string): IExpressoAppConfig {
   return merge({
     name: env.get([ 'APP_NAME', 'npm_package_name' ], 'app'),
     version: env.get('GIT_RELEASE'),

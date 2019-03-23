@@ -5,22 +5,22 @@ const env = require('sugar-env')
 import bodyParser from 'body-parser'
 import middlewares from './middlewares'
 import express, { Express } from 'express'
-import { makeConfig, IAppConfig } from './config'
+import { makeConfig, IExpressoAppConfig } from './config'
 
 interface ITransformerFunction {
-  (app: Express, config: IAppConfig, environment: string): void
+  (app: Express, config: IExpressoAppConfig, environment: string): void
 }
 
 /**
  * Creates express app and registers boilerplate middlewares
  * @param transformer - Custom app configuration function
  */
-export function init (transformer: ITransformerFunction) {
+export function app (transformer: ITransformerFunction) {
   /**
    * @param options - Expresso config options object, wich can be extended with additional properties
    * @param environment - Current sugar-env environment string
    */
-  return async <T extends IAppConfig> (options: T, environment: string) => {
+  return async <T extends IExpressoAppConfig> (options: T, environment: string) => {
     if (environment !== env.TEST) {
       process.on('unhandledRejection', (err) => {
         console.error(err)
@@ -51,3 +51,4 @@ export function init (transformer: ITransformerFunction) {
   }
 }
 
+export default app
