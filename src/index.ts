@@ -48,3 +48,4 @@ export function app <TConfig extends IExpressoConfigOptions>(transformer: (app: 
 }
 
 export default app
+export { IExpressoConfigOptions } from './config'
