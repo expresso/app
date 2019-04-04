@@ -1,4 +1,4 @@
-const env = require('sugar-env')
+import env from 'sugar-env'
 import merge from 'lodash.merge'
 import { CorsOptions } from 'cors'
 import { IMorganConfig } from './middlewares/morgan'
@@ -9,7 +9,11 @@ export interface IExpressoConfigOptions {
   version?: string,
   deeptrace?: IDeepTraceOptions,
   morgan?: IMorganConfig,
-  cors?: CorsOptions
+  cors?: CorsOptions,
+  bodyParser?: {
+    urlEncoded?: boolean,
+    json?: boolean
+  }
 }
 
 export function makeConfig <TOptions extends IExpressoConfigOptions>(options: TOptions, environment: string): Required<IExpressoConfigOptions> & TOptions {
@@ -19,7 +23,7 @@ export function makeConfig <TOptions extends IExpressoConfigOptions>(options: TO
     deeptrace: {
       dsn: env.get('DEEPTRACE_DSN'),
       shouldSendCallback: () => true,
-      timeout: parseInt(env.get('DEEPTRACE_TIMEOUT', 3000)),
+      timeout: env.get.int('DEEPTRACE_TIMEOUT', '3000'),
       tags: {
         environment,
         service: env.get('DEEPTRACE_TAGS_SERVICE', options.name),
@@ -35,6 +39,10 @@ export function makeConfig <TOptions extends IExpressoConfigOptions>(options: TO
       methods: [ 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' ],
       preflightContinue: false,
       optionsSuccessStatus: 204
+    },
+    bodyParser: {
+      urlEncoded: true,
+      json: true
     }
   }, options)
 }

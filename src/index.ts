@@ -31,9 +31,9 @@ export function app <TConfig extends IExpressoConfigOptions>(transformer: (app: 
     app.use(middlewares.deeptrace.factory(config.deeptrace))
     app.use(helmet())
     app.use(cors(config.cors))
-    app.use(bodyParser.json())
+    if (config.bodyParser.json) app.use(bodyParser.json())
     app.use(middlewares.onBehalfOf.factory())
-    app.use(bodyParser.urlencoded({ extended: true }))
+    if (config.bodyParser.urlEncoded) app.use(bodyParser.urlencoded({ extended: true }))
     app.use(middlewares.morgan.factory(config.morgan, environment))
 
     app.get('/ping', routes.ping.factory(config))

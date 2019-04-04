@@ -4,6 +4,13 @@
   "description": "Basic @expresso express boilerplate",
   "main": "dist/index.js",
   "dependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
+    "@types/helmet": "0.0.43",
+    "@types/lodash": "^4.14.123",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^11.11.6",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "deeptrace-express": "^1.2.4",
@@ -11,14 +18,7 @@
     "helmet": "^3.16.0",
     "lodash.merge": "^4.6.1",
     "morgan": "^1.9.1",
-    "sugar-env": "^1.5.3",
-    "@types/body-parser": "^1.17.0",
-    "@types/cors": "^2.8.4",
-    "@types/helmet": "0.0.43",
-    "@types/lodash": "^4.14.123",
-    "@types/lodash.merge": "^4.6.6",
-    "@types/morgan": "^1.7.35",
-    "@types/node": "^11.11.6"
+    "sugar-env": "^1.5.4"
   },
   "devDependencies": {
     "typedoc": "^0.14.2",
