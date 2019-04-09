@@ -1,6 +1,7 @@
 import env from 'sugar-env'
 import merge from 'lodash.merge'
 import { CorsOptions } from 'cors'
+import { OptionsJson, OptionsUrlencoded } from 'body-parser'
 import { IMorganConfig } from './middlewares/morgan'
 import { IDeepTraceOptions } from './middlewares/deep-trace'
 
@@ -11,14 +12,15 @@ export interface IExpressoConfigOptions {
   morgan?: IMorganConfig,
   cors?: CorsOptions,
   bodyParser?: {
-    urlEncoded?: boolean,
-    json?: boolean
+    urlEncoded?: boolean | OptionsUrlencoded,
+    json?: boolean | OptionsJson
+
   }
 }
 
-export function makeConfig <TOptions extends IExpressoConfigOptions>(options: TOptions, environment: string): Required<IExpressoConfigOptions> & TOptions {
+export function makeConfig<TOptions extends IExpressoConfigOptions> (options: TOptions, environment: string): Required<IExpressoConfigOptions> & TOptions {
   return merge({
-    name: env.get([ 'APP_NAME', 'npm_package_name' ], 'app'),
+    name: env.get(['APP_NAME', 'npm_package_name'], 'app'),
     version: env.get('GIT_RELEASE'),
     deeptrace: {
       dsn: env.get('DEEPTRACE_DSN'),
@@ -27,8 +29,8 @@ export function makeConfig <TOptions extends IExpressoConfigOptions>(options: TO
       tags: {
         environment,
         service: env.get('DEEPTRACE_TAGS_SERVICE', options.name),
-        commit: env.get([ 'DEEPTRACE_TAGS_COMMIT', 'GIT_COMMIT' ]),
-        release: env.get([ 'DEEPTRACE_TAGS_RELEASE', 'GIT_RELEASE' ])
+        commit: env.get(['DEEPTRACE_TAGS_COMMIT', 'GIT_COMMIT']),
+        release: env.get(['DEEPTRACE_TAGS_RELEASE', 'GIT_RELEASE'])
       }
     },
     morgan: {
@@ -36,7 +38,7 @@ export function makeConfig <TOptions extends IExpressoConfigOptions>(options: TO
     },
     cors: {
       origin: '*',
-      methods: [ 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' ],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
       preflightContinue: false,
       optionsSuccessStatus: 204
     },
