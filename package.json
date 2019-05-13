@@ -1,6 +1,6 @@
 {
   "name": "@expresso/app",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Basic @expresso express boilerplate",
   "main": "dist/index.js",
   "dependencies": {
