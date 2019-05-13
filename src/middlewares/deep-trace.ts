@@ -1,4 +1,5 @@
 const DeepTrace = require('deeptrace-express')
+import { Request, Response, NextFunction } from 'express'
 
 // TODO: Make this reflect the whole possibility of deepstream configuration options
 export interface IDeepTraceOptions {
@@ -13,5 +14,8 @@ export interface IDeepTraceOptions {
  * @param config - Deepstream's configuration options
  */
 export function factory (config: IDeepTraceOptions) {
-  return DeepTrace.middleware(config)
+  return (req: Request, res: Response, next: NextFunction) => {
+    if (req.path !== '/ping') return DeepTrace.middleware(config)(req, res, next)
+    return next()
+  }
 }
