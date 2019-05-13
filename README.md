@@ -125,5 +125,11 @@ The option object is a simple object containing the application configuration th
     - `methods`: `['GET', 'POST', 'PUT', 'PATCH', 'DELETE']`
     - `preflightContinue`: `false`
     - `optionsSuccessStatus`: `204`
+- `bodyParser`: BodyParser configuration Object
+  - Type: *Object*
+  - Default:
+    - `json`: `true` (controls if BodyParser will accept JSON payloads)
+    - `urlEncoded`: `true` (controls if BodyParser will accept URL Encoded payloads)
+  - **Important**: Both `json` and `urlEncoded` properties can accept a `boolean` or their respective options following the BodyParser guide itself
 
 Any other keys will be **ignored** by expresso, but they'll be passed to your application anyway; all configs can be overriden by passing an object with the same keys but different values.
