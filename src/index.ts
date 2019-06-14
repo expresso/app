@@ -33,7 +33,7 @@ export function app<TConfig extends IExpressoConfigOptions> (transformer: (app: 
     app.use(cors(config.cors))
 
     if (config.bodyParser.json) Object.keys(config.bodyParser.json).length > 0 ? app.use(bodyParser.json(config.bodyParser.json as OptionsJson)) : app.use(bodyParser.json())
-    if (config.bodyParser.urlEncoded) Object.keys(config.bodyParser.urlEncoded).length > 0 ? app.use(bodyParser.urlencoded(config.bodyParser.urlEncoded as OptionsUrlencoded)) : app.use(bodyParser.urlencoded())
+    if (config.bodyParser.urlEncoded) Object.keys(config.bodyParser.urlEncoded).length > 0 ? app.use(bodyParser.urlencoded(config.bodyParser.urlEncoded as OptionsUrlencoded)) : app.use(bodyParser.urlencoded({ extended: true }))
 
     app.use(middlewares.onBehalfOf.factory())
     app.use(middlewares.morgan.factory(config.morgan, environment))

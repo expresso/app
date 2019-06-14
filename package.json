@@ -14,7 +14,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "deeptrace-express": "^1.2.4",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "helmet": "^3.16.0",
     "lodash.merge": "^4.6.1",
     "morgan": "^1.9.1",
