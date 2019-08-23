@@ -1,9 +1,21 @@
 import env from 'sugar-env'
 import merge from 'lodash.merge'
+import Sentry from '@sentry/node'
 import { CorsOptions } from 'cors'
-import { OptionsJson, OptionsUrlencoded } from 'body-parser'
 import { IMorganConfig } from './middlewares/morgan'
+import { OptionsJson, OptionsUrlencoded } from 'body-parser'
 import { IDeepTraceOptions } from './middlewares/deep-trace'
+
+interface SentryMiddlewareError extends Error {
+  status?: number | string;
+  statusCode?: number | string;
+  status_code?: number | string;
+  output?: {
+      statusCode?: number | string;
+  };
+}
+
+type SentryRequestOptions = Parameters<typeof Sentry['Handlers']['requestHandler']>[0]
 
 export interface IExpressoConfigOptions {
   name: string,
@@ -14,7 +26,11 @@ export interface IExpressoConfigOptions {
   bodyParser?: {
     urlEncoded?: boolean | OptionsUrlencoded,
     json?: boolean | OptionsJson
-
+  },
+  sentry?: {
+    dsn: string,
+    requestHandler?: SentryRequestOptions
+    errorHandler?: { shouldHandleError: (error: SentryMiddlewareError) => boolean }
   }
 }
 
@@ -45,6 +61,9 @@ export function makeConfig<TOptions extends IExpressoConfigOptions> (options: TO
     bodyParser: {
       urlEncoded: true,
       json: true
+    },
+    sentry: {
+      dsn: env.get('SENTRY_DSN')
     }
   }, options)
 }
