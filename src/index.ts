@@ -18,14 +18,14 @@ export function app<TConfig extends IExpressoConfigOptions> (transformer: (app: 
    * @param environment - Current sugar-env environment string
    */
   return async (options: TConfig, environment: string) => {
-    if (environment !== env.TEST) {
+    const config = makeConfig(options, environment)
+
+    if (environment !== env.TEST && (!config.sentry || !config.sentry.dsn)) {
       process.on('unhandledRejection', (err) => {
         console.error(err)
         process.exit(1)
       })
     }
-
-    const config = makeConfig(options, environment)
 
     if (config.sentry && config.sentry.dsn) Sentry.init({ dsn: config.sentry.dsn })
 

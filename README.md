@@ -25,7 +25,7 @@ Expresso is an Express wrapper. It contains several pre-built configurations whi
 - [Helmet](https://helmetjs.github.io/)
 - [JWKS RSA](https://github.com/auth0/node-jwks-rsa)
 - [Debug](https://github.com/visionmedia/debug)
-
+- [Sentry](https://sentry.io)
 
 ## Getting Started
 
@@ -131,5 +131,9 @@ The option object is a simple object containing the application configuration th
     - `json`: `true` (controls if BodyParser will accept JSON payloads)
     - `urlEncoded`: `true` (controls if BodyParser will accept URL Encoded payloads)
   - **Important**: Both `json` and `urlEncoded` properties can accept a `boolean` or their respective options following the BodyParser guide itself
+- `sentry`: Sentry configuration object
+  - `dsn` **(Required if using Sentry)**: Sentry API URL ([Official Sentry documentation](https://docs.sentry.io/platforms/node/express/))
+  - `requestHandler`: Options for the sentry request handler middleware
+  - `errorHander`: Options for the error handler middleware
 
 Any other keys will be **ignored** by expresso, but they'll be passed to your application anyway; all configs can be overriden by passing an object with the same keys but different values.
