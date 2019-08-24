@@ -2,7 +2,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import routes from './routes'
 const env = require('sugar-env')
-import Sentry from '@sentry/node'
+import * as Sentry from '@sentry/node'
 import middlewares from './middlewares'
 import express, { Express } from 'express'
 import { makeConfig, IExpressoConfigOptions } from './config'
