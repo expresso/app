@@ -103,7 +103,7 @@ The option object is a simple object containing the application configuration th
   - Properties:
     - `dsn` **(Required if using Deeptrace)**: Deeptrace API URL
       - Type: *string*
-      - Default: `undefined`, it'll error if you try to use Deeptrace without setting it
+      - Default: `process.env.DEEPTRACE_DSN`, it'll error if you try to use Deeptrace without setting it
     - `timeout`: Timeout before Deeptrace gives up on registering the sent request
       - Type: *number*
       - Default: `process.env.DEEPTRACE_TIMEOUT` || `3000`
@@ -133,6 +133,8 @@ The option object is a simple object containing the application configuration th
   - **Important**: Both `json` and `urlEncoded` properties can accept a `boolean` or their respective options following the BodyParser guide itself
 - `sentry`: Sentry configuration object
   - `dsn` **(Required if using Sentry)**: Sentry API URL ([Official Sentry documentation](https://docs.sentry.io/platforms/node/express/))
+    - Type: *String*
+    - Default: `process.env.SENTRY_DSN`
   - `requestHandler`: Options for the sentry request handler middleware
   - `errorHander`: Options for the error handler middleware
 
