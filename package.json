@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf",
+    "clean": "rm -rf dist",
     "build:watch": "tsc -w",
     "build:clean": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
