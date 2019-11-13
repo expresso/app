@@ -41,7 +41,7 @@ export function makeConfig<TOptions extends IExpressoConfigOptions> (options: TO
     deeptrace: {
       dsn: env.get('DEEPTRACE_DSN'),
       shouldSendCallback: () => true,
-      timeout: env.get.int('DEEPTRACE_TIMEOUT', '3000'),
+      timeout: env.get.int('DEEPTRACE_TIMEOUT', 3000),
       tags: {
         environment,
         service: env.get('DEEPTRACE_TAGS_SERVICE', options.name),
