@@ -1,8 +1,9 @@
+import { Request, Response } from 'express'
 import merge from 'lodash.merge'
 const env = require('sugar-env')
 import morgan, { Options } from 'morgan'
 
-export interface IMorganConfig extends Options {
+export interface IMorganConfig extends Options<Request, Response> {
   format: string
 }
 
